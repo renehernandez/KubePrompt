@@ -24,7 +24,7 @@ try {
     Invoke-PSDepend -Path "$PSScriptRoot/Development.depend.psd1" -Install -Import -Force
 }
 catch {
-    Write-Error $_
+    Write-Error $_.Exception.Message
     exit 1
 }
 
