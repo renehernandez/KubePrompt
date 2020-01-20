@@ -83,7 +83,7 @@ Task ImportModule Build, {
     else {
         if (Get-Module $ModuleName) {
             Write-Information "  Unloading Module [$($ModuleName)] from previous import"
-            Remove-Module $PipelineSettings.ModuleName -Force
+            Remove-Module $ModuleName -Force
         }
 
         Write-Information "  Importing Module [$($ModuleName)] from [$($ManifestFile)]"
