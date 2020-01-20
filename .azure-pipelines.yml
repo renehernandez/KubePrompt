@@ -37,7 +37,7 @@ stages:
     jobs:
     - job: Test
       strategy:
-        parallel: 3
+        maxParallel: 3
         matrix:
           Linux:
             vmImage: 'ubuntu-16.04'
@@ -47,7 +47,7 @@ stages:
             vmImage: 'windows-2019'
       pool:
         vmImage: $(vmImage)
-        
+
       steps:
       - task: PowerShell@2
         inputs:
