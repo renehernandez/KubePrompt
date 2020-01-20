@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-results xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="nunit_schema_2.5.xsd" name="Pester" total="3" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2020-01-20" time="06:39:41">
+  <environment clr-version="Unknown" platform="Darwin" machine-name="Renes-MacBook-Pro.local" user="renehernandezremedios" os-version="18.7.0" nunit-version="2.5.8.0" user-domain="" cwd="/Users/renehernandezremedios/projects/personal/KubePrompt" />
+  <culture-info current-culture="en-CA" current-uiculture="en-CA" />
+  <test-suite type="TestFixture" name="Pester" executed="True" result="Success" success="True" time="0.1063" asserts="0" description="Pester">
+    <results>
+      <test-suite type="TestFixture" name="/Users/renehernandezremedios/projects/personal/KubePrompt/Tests/StaticAnalysis.Tests.ps1" executed="True" result="Success" success="True" time="0.1063" asserts="0" description="/Users/renehernandezremedios/projects/personal/KubePrompt/Tests/StaticAnalysis.Tests.ps1">
+        <results>
+          <test-suite type="TestFixture" name="Static Analysis Checker" executed="True" result="Success" success="True" time="0.0979" asserts="0" description="Static Analysis Checker">
+            <results>
+              <test-suite type="TestFixture" name="Module Source" executed="True" result="Success" success="True" time="0.0783" asserts="0" description="Module Source">
+                <results>
+                  <test-case description="KubeInfo.ps1 file should not fail any rules" name="Static Analysis Checker.Module Source.KubeInfo.ps1 file should not fail any rules" time="0.0049" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Prompt.ps1 file should not fail any rules" name="Static Analysis Checker.Module Source.Prompt.ps1 file should not fail any rules" time="0.0035" asserts="0" success="True" result="Success" executed="True" />
+                  <test-case description="Write-KubePrompt.ps1 file should not fail any rules" name="Static Analysis Checker.Module Source.Write-KubePrompt.ps1 file should not fail any rules" time="0.0034" asserts="0" success="True" result="Success" executed="True" />
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

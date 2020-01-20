@@ -1,0 +1,56 @@
+pr:
+  - master
+
+resources:
+  - repo: self
+
+variables:
+  vmImageName: 'ubuntu-latest'
+
+
+stages:
+  - stage: StaticAnalysis
+    jobs:
+    - job: StaticAnalysis
+      pool:
+        vmImage: $(vmImageName)
+
+      steps:
+      - task: PowerShell@2
+        inputs:
+          filePath: ./build.ps1 
+          arguments: -Task StaticAnalysis
+          
+  - stage: Build
+    jobs:
+    - job: Build
+      pool:
+        vmImage: $(vmImageName)
+      
+      steps:
+      - task: PowerShell@2
+        inputs:
+          filePath: ./build.ps1
+          arguments: -Task Build
+
+  - stage: Test
+    jobs:
+    - job: Test
+      strategy:
+        parallel: 3
+        matrix:
+          Linux:
+            vmImage: 'ubuntu-16.04'
+          MacOS:
+            vmImage: 'macOS-10.14'
+          Windows:
+            vmImage: 'windows-2019'
+      pool:
+        vmImage: $(vmImage)
+        
+      steps:
+      - task: PowerShell@2
+        inputs:
+          filePath: ./build.ps1
+          arguments: -Task Tests
+
