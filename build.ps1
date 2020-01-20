@@ -18,13 +18,15 @@ Write-Output "Starting build"
 
 # Grab nuget bits, install modules, set build variables, start build.
 Write-Output "  Install Dependent Modules for CI"
+Get-ChildItem -Path $PSScriptRoot
 try {
     Save-Module -Name PSDepend -Path "$PSScriptRoot/Dependencies" -RequiredVersion 0.3.2 -Force
     Import-Module -Name "$PSScriptRoot/Dependencies/PSDepend" -Force
     Invoke-PSDepend -Path "$PSScriptRoot/Development.depend.psd1" -Install -Import -Force
 }
 catch {
-    Write-Error $_.Exception.Message
+    Write-Output $_
+    Write-Output $_.Exception.Message
     exit 1
 }
 
