@@ -25,7 +25,7 @@ try {
 }
 catch {
     Write-Output $_.Exception.Message
-    Write-Output $_
+    Write-Output $_.ScriptStackTrace
     exit 1
 }
 
