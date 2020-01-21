@@ -16,7 +16,6 @@ Set-StrictMode -Version 2.0
 
 Write-Output "Starting build"
 
-# Grab nuget bits, install modules, set build variables, start build.
 Write-Output "  Install Dependent Modules for CI"
 try {
     Save-Module -Name PSDepend -Path "$PSScriptRoot/Dependencies" -RequiredVersion 0.3.2 -Force
@@ -27,14 +26,6 @@ catch {
     Write-Output $_.Exception.Message
     Write-Output $_.ScriptStackTrace
     exit 1
-}
-
-Write-Output "  Set Build Environment"
-Set-BuildEnvironment -Force
-
-if (($env:BHBranchName -eq 'HEAD') -and (-not [string]::IsNullOrEmpty($env:BRANCH_NAME))) {
-    Write-Output "  Update BHBranchName envvar"
-    $env:BHBranchName = $env:BRANCH_NAME
 }
 
 $params = @{

@@ -1,4 +1,4 @@
-#requires -Modules InvokeBuild, BuildHelpers, PSScriptAnalyzer, Pester, PlatyPS
+#requires -Modules InvokeBuild, PSScriptAnalyzer, Pester, PlatyPS
 
 Set-StrictMode -Version 2.0
 
@@ -92,7 +92,7 @@ Task ImportModule Build, {
 }
 
 # Synopsis: Generates the nupkg file for the module ready to pushed to the remote repository
-Task PublishToLocal Build, {
+Task Publish Build, {
     Publish-Module -Name KubePrompt -NuGetApiKey $env:KubePromptApiKey
 }
 
