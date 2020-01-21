@@ -7,9 +7,9 @@ function TaskX($Name, $Parameters) { task $Name @Parameters -Source $MyInvocatio
 # Variables
 $script:ModuleName = Get-ChildItem -File -Depth 1 -Filter *.psm1 | Select-Object -First 1 -ExpandProperty BaseName
 
-$script:SourceDir = Join-Path -Path $BuildRoot -ChildPath 'Source'
-$script:TestsDir = Join-Path -Path $BuildRoot -ChildPath 'Tests'
-$script:OutputDir = Join-Path -Path $BuildRoot -ChildPath 'Output'
+$script:SourceDir = Join-Path -Path $PSScriptRoot -ChildPath 'Source'
+$script:TestsDir = Join-Path -Path $PSScriptRoot -ChildPath 'Tests'
+$script:OutputDir = Join-Path -Path $PSScriptRoot -ChildPath 'Output'
 $script:HelpDir = Join-Path -Path $OutputDir -ChildPath 'Help'
 $script:ManifestFile = Join-Path -Path $OutputDir -ChildPath '*/KubePrompt.psd1'
 
