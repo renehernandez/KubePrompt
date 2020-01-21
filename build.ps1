@@ -33,13 +33,17 @@ $params = @{
 }
 
 Write-Output "  InvokeBuild"
-Invoke-Build $Task @params
-
-if ($Result.Error)
-{
+try {
+    Invoke-Build $Task @params
+    if ($Result.Error)
+    {
+        exit 1
+    }
+}
+catch {
+    Write-Output $_.Exception.Message
+    Write-Output $_.ScriptStackTrace
     exit 1
 }
-else
-{
-    exit 0
-}
+
+

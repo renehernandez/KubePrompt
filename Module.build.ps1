@@ -8,6 +8,7 @@ function TaskX($Name, $Parameters) { task $Name @Parameters -Source $MyInvocatio
 $script:ModuleName = Get-ChildItem -File -Depth 1 -Filter *.psm1 | Select-Object -First 1 -ExpandProperty BaseName
 
 $script:SourceDir = Join-Path -Path $PSScriptRoot -ChildPath 'Source'
+$script:SourceManifestFile = Join-Path -Path $script:SourceDir -ChildPath "$ModuleName.psd1"
 $script:TestsDir = Join-Path -Path $PSScriptRoot -ChildPath 'Tests'
 $script:OutputDir = Join-Path -Path $PSScriptRoot -ChildPath 'Output'
 $script:HelpDir = Join-Path -Path $OutputDir -ChildPath 'Help'
@@ -72,7 +73,7 @@ Task IntegrationTests ImportModule, {
 }
 
 Task BuildModule {
-    Build-Module -SourcePath $SourceDir
+    Build-Module -SourcePath $SourceManifestFile
 }
 
 Task ImportModule Build, {
