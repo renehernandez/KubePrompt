@@ -73,7 +73,7 @@ Task IntegrationTests ImportModule, {
 }
 
 Task BuildModule {
-    Build-Module -SourcePath $SourceDir
+    Build-Module -SourcePath $SourceDir -Verbose
 }
 
 Task ImportModule Build, {
