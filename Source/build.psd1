@@ -6,7 +6,7 @@
 # -----------------------------------------------------------------------------
 
 @{
-    Path = "{moduleName}.psd1"
+    ModuleManifest = "KubePrompt.psd1"
     VersionedOutputDirectory = $true
     CopyDirectories = @(
         'en-US'
