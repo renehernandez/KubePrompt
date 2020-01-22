@@ -8,7 +8,4 @@
 @{
     ModuleManifest = "KubePrompt.psd1"
     VersionedOutputDirectory = $true
-    CopyDirectories = @(
-        'en-US'
-    )
 }
