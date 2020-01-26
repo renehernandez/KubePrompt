@@ -73,7 +73,7 @@ Task IntegrationTests ImportModule, {
 }
 
 Task BuildModule {
-    Build-Module -SourcePath $SourceDir -Verbose
+    Build-Module -SourcePath $SourceDir
 }
 
 Task ImportModule Build, {
@@ -92,27 +92,7 @@ Task ImportModule Build, {
     }
 }
 
-# Synopsis: Generates the nupkg file for the module ready to pushed to the remote repository
+# Synopsis: Publish module to PowerShell gallery
 Task Publish Build, {
     Publish-Module -Name KubePrompt -NuGetApiKey $env:KubePromptApiKey
 }
-
-# Synopsis: Creates md help pages for the public functions (using the comment-based help) at Docs\Functions.
-# Task CreateHelp ImportModule, {
-#     New-Item -Path $PipelineSettings.FunctionsHelpDir -ItemType Directory -Force | Out-Null
-#     Write-Information "  Delete old functions generated help"
-#     Get-ChildItem -Path $PipelineSettings.FunctionsHelpDir -File | Remove-Item -Force
-
-#     Get-ChildItem "$($PipelineSettings.DestinationDir)\Public\*.ps1" | ForEach-Object {
-#         $mdHelp = @{
-#             OutputFolder = $PipelineSettings.FunctionsHelpDir
-#             AlphabeticParamsOrder = $true
-#             Verbose = $true
-#             Force = $true
-#             NoMetadata = $true
-#             Command = $_.BaseName
-#         }
-#         Write-Information "  Create help file for $($mdHelp.Command) command"
-#         New-MarkdownHelp @mdHelp | ForEach-Object { Write-Verbose $_.FullName }
-#     }
-# }

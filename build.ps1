@@ -28,6 +28,9 @@ catch {
     exit 1
 }
 
+Write-Output "  Configure Environment"
+Set-BuildEnvironment -Force -Verbose
+
 $params = @{
     Result = 'Result'
 }

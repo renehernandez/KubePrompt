@@ -10,4 +10,5 @@
     PSScriptAnalyzer = '1.18.3'
     InvokeBuild = '5.5.6'
     platyPS = '0.14.0'
+    BuildHelpers = '2.0.11'
 }

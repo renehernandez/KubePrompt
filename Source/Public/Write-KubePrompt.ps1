@@ -1,9 +1,8 @@
 $global:KubePromptSettings = @{
     DefaultColors = @{
-        SymbolColor = 'Blue'
-        ContextColor = 'Red'
-        NamespaceColor = 'Cyan'
-        BackgroundColor = $null
+        SymbolColor = [ConsoleColor]::DarkBlue
+        ContextColor = [ConsoleColor]::DarkRed
+        NamespaceColor = [ConsoleColor]::DarkCyan
     }
     Prefix = '['
     Suffix = ']'
@@ -49,26 +48,31 @@ function Write-KubePrompt {
         $nsColor = $settings.DefaultColors.NamespaceColor
         $symColor = $settings.DefaultColors.SymbolColor
         $sym = $settings.Symbol.Value
+        $noSymbol = -not $settings.Symbol.Enabled
 
-        if ($PSBoundParameters.ContainsKey('ContextColor')) {
+        if ($ContextColor) {
             $ctxColor = $ContextColor
         }
 
-        if ($PSBoundParameters.ContainsKey('NamespaceColor')) {
+        if ($NamespaceColor) {
             $nsColor = $NamespaceColor
         }
 
-        if ($PSBoundParameters.ContainsKey('SymbolColor')) {
+        if ($SymbolColor) {
             $symColor = $SymbolColor
         }
 
-        if ($PSBoundParameters.ContainsKey('Symbol')) {
+        if ($Symbol) {
             $sym = $Symbol
+        }
+
+        if ($DisableSymbol) {
+            $noSymbol = $DisableSymbol
         }
 
         Write-ToHost -Text $settings.Prefix
 
-        if (-not $DisableSymbol) {
+        if (-not $noSymbol) {
             Write-ToHost -Text ("$([char]$sym) ") -ForegroundColor $symColor
             Write-ToHost -Text $settings.Separator
         }
