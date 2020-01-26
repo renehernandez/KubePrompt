@@ -1,5 +1,3 @@
-#requires -Modules InvokeBuild, PSScriptAnalyzer, Pester, PlatyPS
-
 Set-StrictMode -Version 2.0
 
 function TaskX($Name, $Parameters) { task $Name @Parameters -Source $MyInvocation }
