@@ -92,5 +92,5 @@ Task ImportModule Build, {
 
 # Synopsis: Publish module to PowerShell gallery
 Task Publish ImportModule, {
-    Publish-Module -Path $ModuleName -NuGetApiKey $env:KubePromptApiKey -Verbose
+    Publish-Module -Name $ModuleName -NuGetApiKey $env:KubePromptApiKey -Verbose
 }
