@@ -7,7 +7,7 @@ function TaskX($Name, $Parameters) { task $Name @Parameters -Source $MyInvocatio
 # Variables
 $script:ModuleName = Get-ChildItem -File -Depth 1 -Filter *.psm1 | Select-Object -First 1 -ExpandProperty BaseName
 
-$script:SourceDir = Join-Path -Path $PSScriptRoot -ChildPath 'Source'
+$script:SourceDir = Join-Path -Path $PSScriptRoot -ChildPath $ModuleName
 $script:SourceManifestFile = Join-Path -Path $script:SourceDir -ChildPath "$ModuleName.psd1"
 $script:TestsDir = Join-Path -Path $PSScriptRoot -ChildPath 'Tests'
 $script:OutputDir = Join-Path -Path $PSScriptRoot -ChildPath 'Output'

@@ -34,7 +34,7 @@ Describe 'Static Analysis Checker' {
     }
 
     Context 'Module Source' {
-        $path = Join-Path -Path $projectRoot -ChildPath 'Source'
+        $path = Join-Path -Path $projectRoot -ChildPath 'KubePrompt'
 
         RunStaticAnalysis -Path $path
     }
