@@ -78,3 +78,5 @@ stages:
         inputs:
           filePath: ./build.ps1
           arguments: -Task Publish
+        env:
+          KubePromptApiKey: $(KubePromptApiKey)
