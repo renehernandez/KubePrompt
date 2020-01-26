@@ -1,9 +1,8 @@
 $global:KubePromptSettings = @{
     DefaultColors = @{
-        SymbolColor = 'Blue'
-        ContextColor = 'Red'
-        NamespaceColor = 'Cyan'
-        BackgroundColor = $null
+        SymbolColor = [ConsoleColor]::DarkBlue
+        ContextColor = [ConsoleColor]::DarkRed
+        NamespaceColor = [ConsoleColor]::DarkCyan
     }
     Prefix = '['
     Suffix = ']'
@@ -16,35 +15,28 @@ $global:KubePromptSettings = @{
 }
 
 
-function Write-KubePrompt
-{
-    [CmdletBinding(DefaultParameterSetName='Default')]
+function Write-KubePrompt {
+    [CmdletBinding(DefaultParameterSetName = 'Default')]
     param(
-
-        [Parameter(ParameterSetName='Default')]
-        [Parameter(ParameterSetName='EnableSymbol')]
+        [Parameter(ParameterSetName = 'Default')]
+        [Parameter(ParameterSetName = 'EnableSymbol')]
         [ValidateNotNullOrEmpty()]
         $ContextColor,
 
-        [Parameter(ParameterSetName='Default')]
-        [Parameter(ParameterSetName='EnableSymbol')]
+        [Parameter(ParameterSetName = 'Default')]
+        [Parameter(ParameterSetName = 'EnableSymbol')]
         [ValidateNotNullOrEmpty()]
         $NamespaceColor,
 
-        [Parameter(ParameterSetName='Default')]
-        [Parameter(ParameterSetName='EnableSymbol')]
-        [ValidateNotNullOrEmpty()]
-        $BackgroundColor,
-
-        [Parameter(ParameterSetName='EnableSymbol')]
+        [Parameter(ParameterSetName = 'EnableSymbol')]
         [ValidateNotNullOrEmpty()]
         $Symbol,
 
-        [Parameter(ParameterSetName='EnableSymbol')]
+        [Parameter(ParameterSetName = 'EnableSymbol')]
         [ValidateNotNullOrEmpty()]
         $SymbolColor,
 
-        [Parameter(ParameterSetName='DisableSymbol')]
+        [Parameter(ParameterSetName = 'DisableSymbol')]
         [switch]
         $DisableSymbol
     )
@@ -54,29 +46,33 @@ function Write-KubePrompt
 
         $ctxColor = $settings.DefaultColors.ContextColor
         $nsColor = $settings.DefaultColors.NamespaceColor
-        $bgColor = $settings.DefaultColors.BackgroundColor
         $symColor = $settings.DefaultColors.SymbolColor
         $sym = $settings.Symbol.Value
+        $noSymbol = -not $settings.Symbol.Enabled
 
-        if ($PSBoundParameters.ContainsKey('ContextColor')) {
+        if ($ContextColor) {
             $ctxColor = $ContextColor
         }
 
-        if ($PSBoundParameters.ContainsKey('NamespaceColor')) {
+        if ($NamespaceColor) {
             $nsColor = $NamespaceColor
         }
 
-        if ($PSBoundParameters.ContainsKey('SymbolColor')) {
+        if ($SymbolColor) {
             $symColor = $SymbolColor
         }
 
-        if ($PSBoundParameters.ContainsKey('Symbol')) {
+        if ($Symbol) {
             $sym = $Symbol
+        }
+
+        if ($DisableSymbol) {
+            $noSymbol = $DisableSymbol
         }
 
         Write-ToHost -Text $settings.Prefix
 
-        if (-not $DisableSymbol) {
+        if (-not $noSymbol) {
             Write-ToHost -Text ("$([char]$sym) ") -ForegroundColor $symColor
             Write-ToHost -Text $settings.Separator
         }
@@ -88,8 +84,6 @@ function Write-KubePrompt
         Write-ToHost -Text (Get-KubeNamespace) -ForegroundColor $nsColor
 
         Write-ToHost -Text $settings.Suffix
-
-        return ""
     }
     catch {
         $PSCmdlet.ThrowTerminatingError($_)
