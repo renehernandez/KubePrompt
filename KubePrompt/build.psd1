@@ -7,5 +7,5 @@
 
 @{
     ModuleManifest = "KubePrompt.psd1"
-    VersionedOutputDirectory = $true
+    OutputDirectory = "../Output/KubePrompt"
 }

@@ -72,6 +72,7 @@ Task IntegrationTests ImportModule, {
 
 Task BuildModule {
     Build-Module -SourcePath $SourceDir
+    $script:ManifestFile = Resolve-Path -Path $script:ManifestFile
 }
 
 Task ImportModule Build, {
@@ -92,5 +93,7 @@ Task ImportModule Build, {
 
 # Synopsis: Publish module to PowerShell gallery
 Task Publish ImportModule, {
-    Publish-Module -Name $ModuleName -NuGetApiKey $env:KubePromptApiKey -Verbose
+    $moduleDir = Join-Path -Path $ManifestFile -ChildPath '..' | Resolve-Path
+
+    Publish-Module -Path $moduleDir -NuGetApiKey $env:KubePromptApiKey
 }
