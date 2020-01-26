@@ -1,4 +1,2 @@
-assembly-versioning-scheme: MajorMinorPatch
-branches:
-  master:
-    tag: beta
+next-version: 0.1.0
+mode: Mainline
