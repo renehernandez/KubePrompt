@@ -23,7 +23,7 @@ try {
     Invoke-PSDepend -Path "$PSScriptRoot/Development.depend.psd1" -Install -Import -Force
 
     Write-Output "  Configure Environment"
-    Set-BuildEnvironment -Verbose -Force
+    Set-BuildEnvironment -Force
 
     Write-Output "  InvokeBuild"
     $params = @{
