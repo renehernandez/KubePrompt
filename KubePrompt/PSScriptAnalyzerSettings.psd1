@@ -5,6 +5,7 @@
         'PSUseToExportFieldsInManifest',
         'PSAvoidUsingWriteHost',
         'PSAvoidGlobalVars'
+        'PSUseSingularNouns'
     )
 
     Rules = @{
