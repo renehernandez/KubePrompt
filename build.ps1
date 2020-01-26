@@ -21,22 +21,14 @@ try {
     Save-Module -Name PSDepend -Path "$PSScriptRoot/Dependencies" -RequiredVersion 0.3.2 -Force
     Import-Module -Name "$PSScriptRoot/Dependencies/PSDepend" -Force
     Invoke-PSDepend -Path "$PSScriptRoot/Development.depend.psd1" -Install -Import -Force
-}
-catch {
-    Write-Output $_.Exception.Message
-    Write-Output $_.ScriptStackTrace
-    exit 1
-}
 
-Write-Output "  Configure Environment"
-Set-BuildEnvironment -Force -Verbose
+    Write-Output "  Configure Environment"
+    Set-BuildEnvironment -Force -Verbose
 
-$params = @{
-    Result = 'Result'
-}
-
-Write-Output "  InvokeBuild"
-try {
+    Write-Output "  InvokeBuild"
+    $params = @{
+        Result = 'Result'
+    }
     Invoke-Build $Task @params
     if ($Result.Error)
     {
