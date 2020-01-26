@@ -5,7 +5,7 @@ resources:
   - repo: self
 
 variables:
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'windows-2019'
   GitVersion.SemVer: ''
 
 stages:
