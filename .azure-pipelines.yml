@@ -9,12 +9,12 @@ variables:
   GitVersion.SemVer: ''
 
 stages:
-  pool:
-    vmImage: $(vmImageName)
-
   - stage: GitVersion
     jobs:
     - job: GitVersion
+      pool:
+        vmImage: $(vmImageName)
+
       steps:
       - task: gittools.gitversion.gitversion-task.GitVersion@5
         inputs:
@@ -24,6 +24,9 @@ stages:
   - stage: StaticAnalysis
     jobs:
     - job: StaticAnalysis
+      pool:
+        vmImage: $(vmImageName)
+
       steps:
       - task: PowerShell@2
         inputs:
@@ -32,7 +35,10 @@ stages:
           
   - stage: Build
     jobs:
-    - job: Build      
+    - job: Build
+      pool:
+        vmImage: $(vmImageName)
+      
       steps:
       - task: PowerShell@2
         inputs:
@@ -61,9 +67,12 @@ stages:
           arguments: -Task Tests
 
   - stage: Publish
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     jobs:
-    - job: Publish      
-      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    - job: Publish
+      pool:
+        vmImage: $(vmImageName)
+      
       steps:
       - task: PowerShell@2
         inputs:
