@@ -1,28 +1,68 @@
-# {moduleName}
+# KubePrompt
 
-## Requirements
+KubePrompt is a powershell module that lets you add the current context and namespace in Kubernetes configured in `kubectl` to your PowerShell prompt
 
-```posh
-Install-Script -Name Install-RequiredModule
+## Installation
+
+### Prerequisites
+
+Before installing KubePrompt make sure the following prerequisites are present in the machine and available via the PATH environment variable.
+
+* [kubectl](https://github.com/kubernetes/kubectl) (kubernetes cli) is installed
+* [kubectx](https://github.com/ahmetb/kubectx) (Linuxs / Mac)
+* [kubens](https://github.com/ahmetb/kubectx) (Linux / Mac)
+
+
+```powershell
+> Install-Module -Name KubePrompt
 ```
 
-## Building your module
+## Usage
 
-1. run `Install-RequiredModule`
+In your `$Profile` file, import `KubePrompt` module and add to your prompt function a call to `Write-KubePrompt`
 
-2. add `.ps1` script files to the `Source` folder
+```powershell
+Import-Module -Name KubePrompt
 
-3. run `Build-Module .\Source`
+function prompt { 
+    Write-KubePrompt
+    ... Rest of your prompt
+}
+```
 
-4. compiled module appears in the `Output` folder
+### Customizations
 
-## Versioning
+There are two ways to provide customizations. Either by specifying parameter to the `Write-KubePrompt` cmdlet invocation or through modification of the `KubePromptSettings` global variable.
 
-ModuleBuilder will automatically apply the next semver version
-if you have installed [gitversion](https://gitversion.readthedocs.io/en/latest/).
+#### Hide k8s symbol
 
-To manually create a new version run `Build-Module .\Source -SemVer 0.0.2`
+* Using the cmdlet parameter:
 
-## Additional Information
+```powershell
+Import-Module -Name KubePrompt
 
-https://github.com/PoshCode/ModuleBuilder
+function prompt {
+    Write-KubePrompt -DisableSymbol
+}
+```
+
+* Using `KubePromptSettings` variable
+
+```powershell
+Import-Module -Name KubePrompt
+
+function prompt {
+    $KubePromptSettings.Symbol.Enabled = $false
+    Write-KubePrompt
+}
+```
+
+#### Change symbol
+
+#### Change colors
+
+## Contributions
+
+## Changelog
+
+## License
