@@ -9,15 +9,14 @@ KubePrompt is a powershell module that lets you add the current context and name
 Before installing KubePrompt make sure the following prerequisites are present in the machine and available via the PATH environment variable.
 
 * [kubectl](https://github.com/kubernetes/kubectl) (kubernetes cli) is installed
-* [kubectx](https://github.com/ahmetb/kubectx) (Linuxs / Mac)
-* [kubens](https://github.com/ahmetb/kubectx) (Linux / Mac)
-
 
 ```powershell
 > Install-Module -Name KubePrompt
 ```
 
 ## Usage
+
+### Setting your prompt
 
 In your `$Profile` file, import `KubePrompt` module and add to your prompt function a call to `Write-KubePrompt`
 
@@ -30,39 +29,12 @@ function prompt {
 }
 ```
 
-### Customizations
-
-There are two ways to provide customizations. Either by specifying parameter to the `Write-KubePrompt` cmdlet invocation or through modification of the `KubePromptSettings` global variable.
-
-#### Hide k8s symbol
-
-* Using the cmdlet parameter:
-
-```powershell
-Import-Module -Name KubePrompt
-
-function prompt {
-    Write-KubePrompt -DisableSymbol
-}
-```
-
-* Using `KubePromptSettings` variable
-
-```powershell
-Import-Module -Name KubePrompt
-
-function prompt {
-    $KubePromptSettings.Symbol.Enabled = $false
-    Write-KubePrompt
-}
-```
-
-#### Change symbol
-
-#### Change colors
+For customizations check the `Write-KubePrompt` docs page
 
 ## Contributions
 
 ## Changelog
 
 ## License
+
+

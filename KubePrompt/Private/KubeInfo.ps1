@@ -1,8 +1,8 @@
 Set-StrictMode -Version 2
 
-function Test-KubeBinaries {
+function Test-KubeBinary {
     try {
-        [bool](Get-Command -Name 'kubectx') -and [bool](Get-Command -Name 'kubens')
+        [bool](Get-Command -Name 'kubectl')
     }
     catch {
         $PSCmdlet.ThrowTerminatingError($_)
@@ -11,7 +11,7 @@ function Test-KubeBinaries {
 
 function Get-KubeContext {
     try {
-        kubectx --current
+        kubectl config current-context
     }
     catch {
         $PSCmdlet.ThrowTerminatingError($_)
@@ -20,7 +20,7 @@ function Get-KubeContext {
 
 function Get-KubeNamespace {
     try {
-        kubens --current
+        kubectl config view --minify --output 'jsonpath={..namespace}'
     }
     catch {
         $PSCmdlet.ThrowTerminatingError($_)
