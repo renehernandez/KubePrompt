@@ -1,7 +1,7 @@
 $global:KubePromptSettings = @{
-    SymbolColor = [ConsoleColor]::DarkBlue
-    ContextColor = [ConsoleColor]::DarkRed
-    NamespaceColor = [ConsoleColor]::DarkCyan
+    SymbolColor = ([ConsoleColor]::DarkBlue)
+    ContextColor = ([ConsoleColor]::DarkRed)
+    NamespaceColor = ([ConsoleColor]::DarkCyan)
     Prefix = '['
     Suffix = ']'
     Symbol = @{
@@ -35,7 +35,6 @@ function Write-KubePrompt {
     in the `Write-KubePrompt` cmdlet invocation or through modification of the `KubePromptSettings`
     global variable.
 
-
     .PARAMETER ContextColor
     Sets the foreground color for the context string. Value can be either of [ConsoleColor] type or string
 
@@ -58,7 +57,7 @@ function Write-KubePrompt {
 
     .EXAMPLE
     $global:KubePromptSettings.Symbol.Enabled = $false
-    Write-KubePrompt
+    PS > Write-KubePrompt
 
     Hides the k8s symbol from the prompt by setting the global KubePromptSettings variable
 
@@ -69,7 +68,7 @@ function Write-KubePrompt {
 
     .EXAMPLE
     $global:KubePromptSettings.Symbol.Value = '*'
-    Write-KubePrompt
+    PS > Write-KubePrompt
 
     Overrides the symbol value through the global KubePromptSettings variable
 
@@ -79,13 +78,26 @@ function Write-KubePrompt {
     Overrides the symbol value by passing a Unicode character
 
     .EXAMPLE
-    Write-KubePrompt -ContextColor [ConsoleColor]::Green
+    Write-KubePrompt -ContextColor ([ConsoleColor]::Green)
 
     Overrides the context string foreground color using a `ConsoleColor` type
 
     .EXAMPLE
-    $global:KubePromptSettings.ContextColor = 'green'
-    Write-KubePrompt
+    $global:KubePromptSettings.ContextColor = 'Green'
+    PS > Write-KubePrompt
+
+    Overrides the context string foreground color using a string
+
+    .EXAMPLE
+    Write-KubePrompt -NamespaceColor ([ConsoleColor]::Yellow)
+
+    Overrides the namespace string foreground color using a `ConsoleColor` type
+
+    .EXAMPLE
+    $global:KubePromptSettings.NamespaceColor = 'Yellow'
+    PS > Write-KubePrompt
+
+    Overrides the namespace string foreground color using a string
     #>
 
     [CmdletBinding(DefaultParameterSetName = 'Default')]
