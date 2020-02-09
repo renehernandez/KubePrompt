@@ -1,28 +1,107 @@
-# {moduleName}
+# KubePrompt
 
-## Requirements
+KubePrompt is a powershell module that lets you add the current context and namespace in Kubernetes configured in `kubectl` to your PowerShell prompt
 
-```posh
-Install-Script -Name Install-RequiredModule
+## Installation
+
+### Prerequisites
+
+Before installing KubePrompt make sure the following prerequisites are present in the machine and available via the PATH environment variable.
+
+* [kubectl](https://github.com/kubernetes/kubectl) (kubernetes cli) is installed
+
+```powershell
+> Install-Module -Name KubePrompt
 ```
 
-## Building your module
+## Usage
 
-1. run `Install-RequiredModule`
+### Setting your prompt
 
-2. add `.ps1` script files to the `Source` folder
+In your `$Profile` file, import `KubePrompt` module and add to your prompt function a call to `Write-KubePrompt`
 
-3. run `Build-Module .\Source`
+```powershell
+Import-Module -Name KubePrompt
 
-4. compiled module appears in the `Output` folder
+function prompt { 
+    Write-KubePrompt
+    ... Rest of your prompt
+}
+```
 
-## Versioning
+### Customizing your Kube prompt
 
-ModuleBuilder will automatically apply the next semver version
-if you have installed [gitversion](https://gitversion.readthedocs.io/en/latest/).
+* Hides the k8s symbol from the prompt
 
-To manually create a new version run `Build-Module .\Source -SemVer 0.0.2`
+```powershell
+Write-KubePrompt -DisableSymbol
+```
 
-## Additional Information
+* Hides the k8s symbol from the prompt by setting the global KubePromptSettings variable
 
-https://github.com/PoshCode/ModuleBuilder
+```powershell
+$global:KubePromptSettings.Symbol.Enabled = $false
+PS > Write-KubePrompt
+```
+
+* Overrides the symbol value with a string
+
+```powershell
+Write-KubePrompt -Symbol '*'
+```
+
+* Overrides the symbol value through the global KubePromptSettings variable
+
+```powershell
+$global:KubePromptSettings.Symbol.Value = '*'
+PS > Write-KubePrompt
+```
+
+* Overrides the symbol value by passing a Unicode character
+
+```powershell
+Write-KubePrompt -Symbol 0x1011 # infinity symbol
+```
+
+* Overrides the context string foreground color using a `ConsoleColor` type
+
+```powershell
+Write-KubePrompt -ContextColor ([ConsoleColor]::Green)
+```
+
+* Overrides the context string foreground color using a string
+
+
+```powershell
+$global:KubePromptSettings.ContextColor = 'Green'
+PS > Write-KubePrompt
+```
+
+* Overrides the namespace string foreground color using a `ConsoleColor` type
+
+```powershell
+Write-KubePrompt -NamespaceColor ([ConsoleColor]::Yellow)
+```
+
+* Overrides the namespace string foreground color using a string
+
+```powershell
+$global:KubePromptSettings.NamespaceColor = 'Yellow'
+PS > Write-KubePrompt
+```
+
+## Contributions
+
+We encourage you to contribute to KubePrompt! Please check out the [Contributing](CONTRIBUTING.md) guide for guidelines about how to proceed.
+
+## Changelog
+
+For changes across releases, see [CHANGELOG](CHANGELOG.md)
+
+## License
+
+KubePrompt is released under the [MIT License](License)
+
+
+
+

@@ -8,19 +8,7 @@ variables:
   vmImageName: 'windows-2019'
   GitVersion.SemVer: ''
 
-stages:
-  - stage: GitVersion
-    jobs:
-    - job: GitVersion
-      pool:
-        vmImage: $(vmImageName)
-
-      steps:
-      - task: gittools.gitversion.gitversion-task.GitVersion@5
-        inputs:
-          useConfigFile: true
-          configFilePath: GitVersion.yml
-          
+stages:          
   - stage: StaticAnalysis
     jobs:
     - job: StaticAnalysis

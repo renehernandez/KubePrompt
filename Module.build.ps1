@@ -1,7 +1,5 @@
 Set-StrictMode -Version 2.0
 
-function TaskX($Name, $Parameters) { task $Name @Parameters -Source $MyInvocation }
-
 # Variables
 $script:ModuleName = Get-ChildItem -File -Depth 1 -Filter *.psm1 | Select-Object -First 1 -ExpandProperty BaseName
 
