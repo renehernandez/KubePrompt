@@ -1,14 +1,14 @@
 # KubePrompt
 
-KubePrompt is a powershell module that lets you add the current context and namespace in Kubernetes configured in `kubectl` to your PowerShell prompt
+KubePrompt is a powershell module that lets you add the current context and namespace in Kubernetes configured in `kubectl` to your PowerShell prompt. The idea for it is based on the [kube-ps1](https://github.com/jonmosco/kube-ps1) project for bash.
 
 ## Installation
 
 ### Prerequisites
 
-Before installing KubePrompt make sure the following prerequisites are present in the machine and available via the PATH environment variable.
+Before installing KubePrompt make sure that [kubectl](https://github.com/kubernetes/kubectl) (kubernetes cli) is installed in the machine and available via the PATH environment variable.
 
-* [kubectl](https://github.com/kubernetes/kubectl) (kubernetes cli) is installed
+Then install the module from the PowerShell Gallery:
 
 ```powershell
 > Install-Module -Name KubePrompt
@@ -16,9 +16,11 @@ Before installing KubePrompt make sure the following prerequisites are present i
 
 ## Usage
 
+![prompt image](Docs/prompt.png)
+
 ### Setting your prompt
 
-In your `$Profile` file, import `KubePrompt` module and add to your prompt function a call to `Write-KubePrompt`
+*KubePrompt* module will detect whether you are using the default prompt or a customized one. If using the default prompt, it is enough to import the module in your PowerShell `$PROFILE`. Otherwise, import *KubePrompt* module and add to your **prompt** function a call to `Write-KubePrompt` as follows:
 
 ```powershell
 Import-Module -Name KubePrompt
@@ -41,7 +43,7 @@ Write-KubePrompt -DisableSymbol
 
 ```powershell
 $global:KubePromptSettings.Symbol.Enabled = $false
-PS > Write-KubePrompt
+Write-KubePrompt
 ```
 
 * Overrides the symbol value with a string
@@ -54,7 +56,7 @@ Write-KubePrompt -Symbol '*'
 
 ```powershell
 $global:KubePromptSettings.Symbol.Value = '*'
-PS > Write-KubePrompt
+Write-KubePrompt
 ```
 
 * Overrides the symbol value by passing a Unicode character
@@ -74,7 +76,7 @@ Write-KubePrompt -ContextColor ([ConsoleColor]::Green)
 
 ```powershell
 $global:KubePromptSettings.ContextColor = 'Green'
-PS > Write-KubePrompt
+Write-KubePrompt
 ```
 
 * Overrides the namespace string foreground color using a `ConsoleColor` type
@@ -87,7 +89,7 @@ Write-KubePrompt -NamespaceColor ([ConsoleColor]::Yellow)
 
 ```powershell
 $global:KubePromptSettings.NamespaceColor = 'Yellow'
-PS > Write-KubePrompt
+Write-KubePrompt
 ```
 
 ## Contributions

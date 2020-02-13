@@ -20,7 +20,13 @@ function Get-KubeContext {
 
 function Get-KubeNamespace {
     try {
-        kubectl config view --minify --output 'jsonpath={..namespace}'
+        $namespace = kubectl config view --minify --output 'jsonpath={..namespace}'
+
+        if (-not $namespace) {
+            $namespace = "default"
+        }
+
+        $namespace
     }
     catch {
         $PSCmdlet.ThrowTerminatingError($_)

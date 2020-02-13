@@ -69,7 +69,7 @@ Task IntegrationTests ImportModule, {
 }
 
 Task BuildModule {
-    Build-Module -SourcePath $SourceDir
+    Build-Module -SourcePath $SourceDir -SourceDirectories 'Private', 'Public', 'Init'
     $script:ManifestFile = Resolve-Path -Path $script:ManifestFile
 }
 

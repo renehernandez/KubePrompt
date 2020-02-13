@@ -1,3 +1,13 @@
+## [0.3.0] - 13-02-2020
+
+### Added
+
+* Automatic Prompt override if using default PowerShell prompt
+
+### Fixed
+
+* No namespace found when switching context. Now defaults to the *default* namespace
+
 ## [0.2.0] - 09-02-2020
 
 ### Added
