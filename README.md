@@ -16,8 +16,6 @@ Then install the module from the PowerShell Gallery:
 
 ## Usage
 
-![prompt image](Docs/prompt.png)
-
 ### Setting your prompt
 
 *KubePrompt* module will detect whether you are using the default prompt or a customized one. If using the default prompt, it is enough to import the module in your PowerShell `$PROFILE`. Otherwise, import *KubePrompt* module and add to your **prompt** function a call to `Write-KubePrompt` as follows:
@@ -30,6 +28,10 @@ function prompt {
     ... Rest of your prompt
 }
 ```
+
+Then your prompt should looks like:
+
+![prompt image](Docs/prompt.jpg)
 
 ### Customizing your Kube prompt
 

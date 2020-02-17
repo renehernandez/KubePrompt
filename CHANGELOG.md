@@ -1,3 +1,9 @@
+## [0.3.1] - 17-02-2020
+
+### Fixed
+
+* Prompt image in Readme
+
 ## [0.3.0] - 13-02-2020
 
 ### Added

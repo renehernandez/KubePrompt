@@ -6,7 +6,7 @@
     RootModule        = 'KubePrompt.psm1'
 
     # Version number of this module.
-    ModuleVersion     = '0.3.0'
+    ModuleVersion     = '0.3.1'
 
     # ID used to uniquely identify this module
     GUID              = '31E2BCCB-1D66-4C99-83AC-DD1A488B9D4D'
