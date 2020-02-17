@@ -31,7 +31,7 @@ function prompt {
 
 Then your prompt should looks like:
 
-![prompt image](Docs/prompt.png)
+![prompt image](Docs/prompt.jpg)
 
 ### Customizing your Kube prompt
 
